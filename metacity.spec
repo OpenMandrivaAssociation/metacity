@@ -6,7 +6,7 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.19.1
+Version: 2.19.3
 Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
@@ -134,6 +134,7 @@ fi
 %{_sysconfdir}/gconf/schemas/*
 %{_bindir}/*
 %{_libexecdir}/metacity-dialog
+%{_datadir}/control-center/keybindings/50-metacity*.xml
 %{_datadir}/gnome/wm-properties/*
 %{_datadir}/metacity
 %{_datadir}/themes/*
@@ -151,5 +152,3 @@ fi
 %{_libdir}/*.la
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
-
-
