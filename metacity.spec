@@ -1,12 +1,13 @@
 %define lib_major 0
-%define lib_name %mklibname %{name}-private %{lib_major}
+%define libname %mklibname %{name}-private %{lib_major}
+%define libnamedev %mklibname -d %{name}-private
 %define startup_notification_version 0.4
 
 %define libcm_version 0.1.1
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.19.21
+Version: 2.19.34
 Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
@@ -36,22 +37,23 @@ BuildRequires: intltool
 Metacity is a simple window manager that integrates nicely with 
 GNOME 2.
 
-%package -n %{lib_name}
+%package -n %{libname}
 Summary:        Libraries for Metacity
 Group:          System/Libraries
 
-%description -n %{lib_name}
+%description -n %{libname}
 This package contains libraries used by Metacity.
 
-%package -n %{lib_name}-devel
+%package -n %{libnamedev}
 Summary:        Libraries and include files with Metacity
 Group:          Development/GNOME and GTK+
 Requires:       %name = %{version}
-Requires:		%{lib_name} = %{version}
+Requires:		%{libname} = %{version}
 Provides:		%{name}-devel = %{version}-%{release}
 Provides:		lib%{name}-private-devel = %{version}-%{release}
+Obsoletes: %mklibname -d %{name}-private 0
 
-%description -n %{lib_name}-devel
+%description -n %{libnamedev}
 This package provides the necessary development libraries and include 
 files to allow you to develop with Metacity.
 
@@ -124,9 +126,9 @@ fi
 %preun
 %preun_uninstall_gconf_schemas %{schemas}
 
-%post -n %{lib_name} -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
 
-%postun -n %{lib_name} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(-,root,root)
@@ -140,11 +142,11 @@ fi
 %{_datadir}/themes/*
 %{_mandir}/man1/*
 
-%files -n %{lib_name}
+%files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{lib_major}*
 
-%files -n %{lib_name}-devel
+%files -n %{libnamedev}
 %defattr(-,root,root)
 %doc ChangeLog
 %{_libdir}/*.so
