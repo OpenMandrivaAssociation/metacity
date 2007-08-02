@@ -8,7 +8,7 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.19.34
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 Source1: Wonderland-metacity-0.47.tar.bz2
@@ -17,6 +17,8 @@ Source2: http://download.gnome.org/sources/libcm/libcm-%{libcm_version}.tar.bz2
 Patch2: metacity-2.15.21-defaulttheme.patch
 # (fc) 2.15.3-1mdv build with static libcm (Fedora)
 Patch3: metacity-2.15.3-static-cm.patch
+# (fc) 2.19.34-2mdv fix kill dialog with non-UTF8 locale
+Patch4: metacity-2.19.34-noutf8.patch
 
 License: GPL
 Group: Graphical desktop/GNOME
@@ -63,6 +65,7 @@ files to allow you to develop with Metacity.
 %setup -q -D -T -a2
 %patch2 -p1 -b .defaulttheme
 %patch3 -p1 -b .static-cm
+%patch4 -p1 -b .noutf8
 
 #needed by patch3
 aclocal
