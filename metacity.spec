@@ -137,7 +137,7 @@ fi
 %{_sysconfdir}/gconf/schemas/*
 %{_bindir}/*
 %{_libexecdir}/metacity-dialog
-%{_datadir}/control-center/keybindings/50-metacity*.xml
+%{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
 %{_datadir}/gnome/wm-properties/*
 %{_datadir}/metacity
 %{_datadir}/themes/*
