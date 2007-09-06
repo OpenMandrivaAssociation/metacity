@@ -8,7 +8,7 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.19.55
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 Source1: Wonderland-metacity-0.47.tar.bz2
@@ -110,11 +110,27 @@ rm -rf $RPM_BUILD_ROOT
 
 %define schemas metacity
 
+# update default window theme on distribution upgrade
+%triggerpostun -- metacity < 2.19.55
+if [ "x$META_CLASS" != "x" ]; then
+ case "$META_CLASS" in
+  *server) METACITY_THEME="Ia Ora Gray" ;;
+  *desktop) METACITY_THEME="Ia Ora One" ;;
+  *download) METACITY_THEME="Ia Ora Free";;
+ esac
+
+  if [ "x$METACITY_THEME" != "x" ]; then
+  %{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/metacity/general/theme "$METACITY_THEME" > /dev/null
+  fi
+fi
+
+
+
 %post
 if [ ! -d %{_sysconfdir}/gconf/gconf.xml.local-defaults/apps/metacity/general -a "x$META_CLASS" != "x" ]; then
  case "$META_CLASS" in
   *server) METACITY_THEME="Ia Ora Gray" ;;
-  *desktop) METACITY_THEME="Ia Ora Orange" ;;
+  *desktop) METACITY_THEME="Ia Ora One" ;;
   *download) METACITY_THEME="Ia Ora Free";;
  esac
 
