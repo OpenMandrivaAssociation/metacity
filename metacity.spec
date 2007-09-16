@@ -7,8 +7,8 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.19.55
-Release: %mkrel 2
+Version: 2.20.0
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 Source1: Wonderland-metacity-0.47.tar.bz2
