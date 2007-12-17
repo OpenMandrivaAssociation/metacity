@@ -20,7 +20,6 @@ Patch3: metacity-2.15.3-static-cm.patch
 
 License: GPL
 Group: Graphical desktop/GNOME
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: libglade2.0-devel
 BuildRequires: libGConf2-devel >= 1.1.9
 BuildRequires: startup-notification-devel >= %{startup_notification_version}
