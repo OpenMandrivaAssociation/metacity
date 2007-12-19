@@ -5,15 +5,13 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.21.3
-Release: %mkrel 2
+Version: 2.21.5
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 Source1: Wonderland-metacity-0.47.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
 Patch2: metacity-2.15.21-defaulttheme.patch
-# (fc) 2.21.3-2mdv new compositor (SVN)
-Patch3: metacity-2.21.3-newcompositor.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
 
@@ -59,11 +57,7 @@ files to allow you to develop with Metacity.
 %prep
 %setup -q
 %patch2 -p1 -b .defaulttheme
-%patch3 -p1 -b .newcompositor
 %patch4 -p1 -b .enable-compositor
-
-#needed by patch3
-autoreconf
 
 %build
 
