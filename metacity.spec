@@ -3,20 +3,19 @@
 %define libnamedev %mklibname -d %{name}-private
 %define startup_notification_version 0.4
 
-%define libcm_version 0.1.1
-
 Summary: Metacity window manager
 Name: metacity
 Version: 2.21.3
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 Source1: Wonderland-metacity-0.47.tar.bz2
-Source2: http://download.gnome.org/sources/libcm/libcm-%{libcm_version}.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
 Patch2: metacity-2.15.21-defaulttheme.patch
-# (fc) 2.15.3-1mdv build with static libcm (Fedora)
-Patch3: metacity-2.15.3-static-cm.patch
+# (fc) 2.21.3-2mdv new compositor (SVN)
+Patch3: metacity-2.21.3-newcompositor.patch
+# (fc) 2.21.3-2mdv enable compositor by default
+Patch4: metacity-enable-compositor.patch
 
 License: GPL
 Group: Graphical desktop/GNOME
@@ -59,39 +58,16 @@ files to allow you to develop with Metacity.
 
 %prep
 %setup -q
-%setup -q -D -T -a2
 %patch2 -p1 -b .defaulttheme
-%patch3 -p1 -b .static-cm
+%patch3 -p1 -b .newcompositor
+%patch4 -p1 -b .enable-compositor
 
 #needed by patch3
-intltoolize --force
-aclocal
-autoconf
-automake -a -c
+autoreconf
 
 %build
 
-cd libcm-%{libcm_version}
-%configure2_5x
-%make
-make install DESTDIR="$PWD/prefix"
-cd ..
-
-LIBS="$LIBS -lGL -lGLU"
-LIBS="$LIBS -lICE -lSM"
-LIBS="$LIBS -lX11 -lXext -lXinerama -lXrandr"
-LIBS="$LIBS -lXrender -lXcursor"
-LIBS="$LIBS -lXdamage -lXtst -lXfixes -lXcomposite"
-%ifnarch s390 s390x ppc64
-LIBS="$LIBS $PWD/libcm-%{libcm_version}/prefix/%{_libdir}/libcm.a"
-%endif
-export LIBS
-
-CPPFLAGS="-I$PWD/libcm-%{libcm_version}/prefix/%{_includedir}"
-export CPPFLAGS
-
-
-%configure2_5x --enable-compositor
+%configure2_5x 
 %make 
 
 %install
