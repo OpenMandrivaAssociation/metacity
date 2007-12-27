@@ -6,7 +6,7 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.21.5
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 Source1: Wonderland-metacity-0.47.tar.bz2
@@ -14,6 +14,8 @@ Source1: Wonderland-metacity-0.47.tar.bz2
 Patch2: metacity-2.15.21-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
+# (fc) 2.21.5-2mdv use Compositor Overlay Window from XComposite (SVN)
+Patch5: metacity-2.21.5-cow.patch
 
 License: GPL
 Group: Graphical desktop/GNOME
@@ -59,6 +61,7 @@ files to allow you to develop with Metacity.
 %setup -q
 %patch2 -p1 -b .defaulttheme
 %patch4 -p1 -b .enable-compositor
+%patch5 -p1 -b .cow
 
 %build
 
