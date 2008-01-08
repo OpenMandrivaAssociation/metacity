@@ -9,7 +9,6 @@ Version: 2.21.5
 Release: %mkrel 3
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
-Source1: Wonderland-metacity-0.47.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
 Patch2: metacity-2.15.21-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
@@ -75,9 +74,6 @@ files to allow you to develop with Metacity.
 rm -rf $RPM_BUILD_ROOT
 
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/themes/Wonderland/metacity-1
-tar -xjf %{SOURCE1} -C $RPM_BUILD_ROOT%{_datadir}/themes/Wonderland/metacity-1
 
 %find_lang %{name}
 
