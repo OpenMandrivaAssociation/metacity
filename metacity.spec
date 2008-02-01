@@ -6,7 +6,7 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.21.5
-Release: %mkrel 3
+Release: %mkrel 4
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
@@ -61,7 +61,8 @@ files to allow you to develop with Metacity.
 %prep
 %setup -q
 %patch2 -p1 -b .defaulttheme
-%patch4 -p1 -b .enable-compositor
+# don't enable compositor by default, too many drivers are buggy currently
+#%patch4 -p1 -b .enable-compositor
 %patch5 -p1 -b .cow
 %patch6 -p1 -b .fixcompositor
 
