@@ -5,18 +5,14 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.21.5
-Release: %mkrel 4
+Version: 2.21.8
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
 Patch2: metacity-2.15.21-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
-# (fc) 2.21.5-2mdv use Compositor Overlay Window from XComposite (SVN)
-Patch5: metacity-2.21.5-cow.patch
-# (fc) 2.21.5-3mdv fix glitches in compositor (GNOME bug #504876, fix shadows) (SVN)
-Patch6: metacity-2.21.5-fixcompositor.patch
 
 License: GPL
 Group: Graphical desktop/GNOME
@@ -63,8 +59,6 @@ files to allow you to develop with Metacity.
 %patch2 -p1 -b .defaulttheme
 # don't enable compositor by default, too many drivers are buggy currently
 #%patch4 -p1 -b .enable-compositor
-%patch5 -p1 -b .cow
-%patch6 -p1 -b .fixcompositor
 
 %build
 
