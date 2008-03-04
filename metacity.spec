@@ -6,7 +6,7 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.21.21
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
@@ -78,12 +78,12 @@ rm -rf $RPM_BUILD_ROOT
 %define schemas metacity
 
 # update default window theme on distribution upgrade
-%triggerpostun -- metacity < 2.19.55
+%triggerpostun -- metacity < 2.21.21-2mdv
 if [ "x$META_CLASS" != "x" ]; then
  case "$META_CLASS" in
   *server) METACITY_THEME="Ia Ora Gray" ;;
-  *desktop) METACITY_THEME="Ia Ora One" ;;
-  *download) METACITY_THEME="Ia Ora Free";;
+  *desktop) METACITY_THEME="Ia Ora Blue" ;;
+  *download) METACITY_THEME="Ia Ora Smooth";;
  esac
 
   if [ "x$METACITY_THEME" != "x" ]; then
@@ -97,8 +97,8 @@ fi
 if [ ! -d %{_sysconfdir}/gconf/gconf.xml.local-defaults/apps/metacity/general -a "x$META_CLASS" != "x" ]; then
  case "$META_CLASS" in
   *server) METACITY_THEME="Ia Ora Gray" ;;
-  *desktop) METACITY_THEME="Ia Ora One" ;;
-  *download) METACITY_THEME="Ia Ora Free";;
+  *desktop) METACITY_THEME="Ia Ora Blue" ;;
+  *download) METACITY_THEME="Ia Ora Smooth";;
  esac
 
   if [ "x$METACITY_THEME" != "x" ]; then 
