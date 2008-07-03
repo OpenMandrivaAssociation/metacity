@@ -5,8 +5,8 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.22.0
-Release: %mkrel 2
+Version: 2.23.34
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
@@ -14,7 +14,7 @@ Patch2: metacity-2.15.21-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
 
-License: GPL
+License: GPLv2+
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: libglade2.0-devel
@@ -24,8 +24,6 @@ BuildRequires: libxcomposite-devel
 BuildRequires: libxdamage-devel
 BuildRequires: libxtst-devel
 BuildRequires: libmesaglu-devel
-#gw for the broken intltool scripts
-BuildRequires: perl-XML-Parser
 BuildRequires: GConf2
 BuildRequires: intltool
 
@@ -63,11 +61,10 @@ files to allow you to develop with Metacity.
 %build
 
 %configure2_5x 
-%make 
+%make LIBS=-lm
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
 %find_lang %{name}
