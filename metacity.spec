@@ -6,7 +6,7 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.23.55
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: libglade2.0-devel
 BuildRequires: libGConf2-devel >= 1.1.9
 BuildRequires: startup-notification-devel >= %{startup_notification_version}
+BuildRequires: libxinerama-devel
 BuildRequires: libxcomposite-devel
 BuildRequires: libxdamage-devel
 BuildRequires: libxtst-devel
