@@ -5,7 +5,7 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.23.377
+Version: 2.23.610
 Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
@@ -105,6 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libexecdir}/metacity-dialog
 %{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
 %{_datadir}/applications/metacity.desktop
+%{_datadir}/gnome/wm-properties/metacity-wm.desktop
 %{_datadir}/metacity
 %{_datadir}/themes/*
 %{_mandir}/man1/*
