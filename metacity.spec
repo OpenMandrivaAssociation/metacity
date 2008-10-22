@@ -112,8 +112,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/*
 %{_libexecdir}/metacity-dialog
 %{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
-%{_datadir}/gnome/wm-properties/metacity.desktop
+%{_datadir}/applications/metacity.desktop
+%{_datadir}/gnome/wm-properties/metacity-wm.desktop
 %{_datadir}/metacity
+%dir %_datadir/gnome/help/creating_metacity_themes
+%_datadir/gnome/help/creating_metacity_themes/C
 %{_datadir}/themes/*
 %{_mandir}/man1/*
 
