@@ -30,6 +30,7 @@ BuildRequires: libxtst-devel
 BuildRequires: libmesaglu-devel
 BuildRequires: GConf2
 BuildRequires: intltool
+BuildRequires: gnome-doc-utils
 
 %description
 Metacity is a simple window manager that integrates nicely with 
