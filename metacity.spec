@@ -6,7 +6,7 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.25.5
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
