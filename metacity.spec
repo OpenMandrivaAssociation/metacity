@@ -31,6 +31,9 @@ BuildRequires: GConf2
 BuildRequires: zenity
 BuildRequires: intltool
 BuildRequires: gnome-doc-utils
+#gw libtool dep:
+BuildRequires: dbus-glib-devel
+
 
 %description
 Metacity is a simple window manager that integrates nicely with 
