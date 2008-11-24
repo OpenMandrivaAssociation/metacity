@@ -5,8 +5,8 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.25.5
-Release: %mkrel 2
+Version: 2.25.8
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
@@ -68,10 +68,10 @@ files to allow you to develop with Metacity.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT %name.lang
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
-%find_lang %{name}
+%find_lang %{name} 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -108,8 +108,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/metacity.desktop
 %{_datadir}/gnome/wm-properties/metacity-wm.desktop
 %{_datadir}/metacity
-%dir %_datadir/gnome/help/creating_metacity_themes
-%_datadir/gnome/help/creating_metacity_themes/C
+%dir %_datadir/gnome/help/creating-metacity-themes
+%_datadir/gnome/help/creating-metacity-themes/C
 %{_datadir}/themes/*
 %{_mandir}/man1/*
 
