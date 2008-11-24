@@ -18,6 +18,7 @@ Patch5: metacity-2.21.13-dont-move-windows.patch
 License: GPLv2+
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
+Requires: zenity
 BuildRequires: libglade2.0-devel
 BuildRequires: libGConf2-devel >= 1.1.9
 BuildRequires: startup-notification-devel >= %{startup_notification_version}
@@ -27,6 +28,7 @@ BuildRequires: libxdamage-devel
 BuildRequires: libxtst-devel
 BuildRequires: libmesaglu-devel
 BuildRequires: GConf2
+BuildRequires: zenity
 BuildRequires: intltool
 BuildRequires: gnome-doc-utils
 
