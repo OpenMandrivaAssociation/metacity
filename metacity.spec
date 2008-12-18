@@ -5,12 +5,12 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.25.34
+Version: 2.25.55
 Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 #gw http://bugzilla.gnome.org/show_bug.cgi?id=562106
-Patch: metacity-2.25.8-disable-werror.patch
+Patch: metacity-2.25.55-disable-werror.patch
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
 Patch2: metacity-2.25.2-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
