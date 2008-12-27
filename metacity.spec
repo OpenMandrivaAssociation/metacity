@@ -5,7 +5,7 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.25.55
+Version: 2.25.89
 Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
@@ -15,8 +15,6 @@ Patch: metacity-2.25.55-disable-werror.patch
 Patch2: metacity-2.25.2-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
-# (fc) 2.23.144-2mdv don't move window across workspace when raising (Mdv bug #25009) (GNOME bug #482354)
-Patch5: metacity-2.21.13-dont-move-windows.patch
 License: GPLv2+
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
@@ -69,7 +67,6 @@ autoconf
 %patch2 -p1 -b .defaulttheme
 # don't enable compositor by default, too many drivers are buggy currently
 #%patch4 -p1 -b .enable-compositor
-%patch5 -p1 -b .dont-move-windows
 
 %build
 
