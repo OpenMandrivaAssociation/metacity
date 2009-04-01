@@ -6,15 +6,19 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.26.0
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 #gw http://bugzilla.gnome.org/show_bug.cgi?id=562106
-Patch: metacity-2.25.55-disable-werror.patch
+Patch0: metacity-2.25.55-disable-werror.patch
 # (fc) 2.3.987-2mdk use Ia Ora as default theme
 Patch2: metacity-2.25.2-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
+# (fc) 2.26.0-2mdv fix struts with auto-hidden panel (GNOME bug #572573) (SVN)
+Patch5: metacity-struts.patch
+# (fc) 2.26.0-2mdv use libcanberra to play sound events (GNOME bug #557921) (SVN)
+Patch6: metacity-canberra.patch
 License: GPLv2+
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
@@ -62,11 +66,15 @@ files to allow you to develop with Metacity.
 
 %prep
 %setup -q
-%patch -p1
-autoconf
+%patch0 -p1 -b .werror
 %patch2 -p1 -b .defaulttheme
 # don't enable compositor by default, too many drivers are buggy currently
 #%patch4 -p1 -b .enable-compositor
+%patch5 -p1 -b .struts
+%patch6 -p1 -b .canberra
+
+#needed by patch 0 & 6
+autoconf
 
 %build
 
@@ -85,13 +93,35 @@ rm -rf $RPM_BUILD_ROOT
 %define schemas metacity
 
 # update default window theme on distribution upgrade
-%triggerpostun -- metacity < 2.23.144-3mdv
-  %{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --unset /apps/metacity/general/theme > /dev/null
+%triggerpostun -- metacity < 2.26.0-2mdv
+if [ "x$META_CLASS" != "x" ]; then
+ case "$META_CLASS" in
+  *server) METACITY_THEME="Ia Ora Gray" ;;
+  *desktop) METACITY_THEME="Ia Ora Smooth" ;;
+  *download) METACITY_THEME="Ia Ora Blue";;
+ esac
 
-%if %mdkversion < 200900
+  if [ "x$METACITY_THEME" != "x" ]; then
+  %{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/metacity/general/theme "$METACITY_THEME" > /dev/null
+  fi
+fi
+
 %post
+%if %mdkversion < 200900
 %post_install_gconf_schemas %{schemas}
 %endif
+if [ ! -d %{_sysconfdir}/gconf/gconf.xml.local-defaults/apps/metacity/general -a "x$META_CLASS" != "x" ]; then
+ case "$META_CLASS" in
+  *server) METACITY_THEME="Ia Ora Gray" ;;
+  *desktop) METACITY_THEME="Ia Ora Smooth" ;;
+  *download) METACITY_THEME="Ia Ora Blue";;
+ esac
+
+  if [ "x$METACITY_THEME" != "x" ]; then 
+  %{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/metacity/general/theme "$METACITY_THEME" > /dev/null
+  fi
+fi
+
 
 %preun
 %preun_uninstall_gconf_schemas %{schemas}
