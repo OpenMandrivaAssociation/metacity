@@ -5,8 +5,8 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.26.0
-Release: %mkrel 3
+Version: 2.27.0
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 #gw http://bugzilla.gnome.org/show_bug.cgi?id=562106
@@ -15,10 +15,6 @@ Patch0: metacity-2.25.55-disable-werror.patch
 Patch2: metacity-2.25.2-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
-# (fc) 2.26.0-2mdv fix struts with auto-hidden panel (GNOME bug #572573) (SVN)
-Patch5: metacity-struts.patch
-# (fc) 2.26.0-2mdv use libcanberra to play sound events (GNOME bug #557921) (SVN)
-Patch6: metacity-canberra.patch
 License: GPLv2+
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
@@ -26,6 +22,8 @@ Requires: zenity
 BuildRequires: libglade2.0-devel
 BuildRequires: libGConf2-devel >= 1.1.9
 BuildRequires: startup-notification-devel >= %{startup_notification_version}
+BuildRequires: libcanberra-devel
+BuildRequires: libgtop2.0-devel
 BuildRequires: libxinerama-devel
 BuildRequires: libxcomposite-devel
 BuildRequires: libxdamage-devel
@@ -71,10 +69,8 @@ files to allow you to develop with Metacity.
 %patch2 -p1 -b .defaulttheme
 # don't enable compositor by default, too many drivers are buggy currently
 #%patch4 -p1 -b .enable-compositor
-%patch5 -p1 -b .struts
-%patch6 -p1 -b .canberra
 
-#needed by patch 0 & 6
+#needed by patch 0
 autoconf
 
 %build
@@ -140,7 +136,6 @@ fi
 %doc README COPYING NEWS HACKING 
 %{_sysconfdir}/gconf/schemas/*
 %{_bindir}/*
-%{_libexecdir}/metacity-dialog
 %{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
 %{_datadir}/applications/metacity.desktop
 %{_datadir}/gnome/wm-properties/metacity-wm.desktop
