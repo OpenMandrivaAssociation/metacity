@@ -6,7 +6,7 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.28.0
-Release: %mkrel 2
+Release: %mkrel 3
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 #gw http://bugzilla.gnome.org/show_bug.cgi?id=562106
@@ -94,12 +94,12 @@ rm -rf $RPM_BUILD_ROOT
 %define schemas metacity
 
 # update default window theme on distribution upgrade
-%triggerpostun -- metacity < 2.26.0-3mdv
+%triggerpostun -- metacity < 2.28.0-3mdv
 if [ "x$META_CLASS" != "x" ]; then
  case "$META_CLASS" in
   *server) METACITY_THEME="Ia Ora Gray" ;;
-  *desktop) METACITY_THEME="Ia Ora Arctic" ;;
-  *download) METACITY_THEME="Ia Ora Blue";;
+  *desktop) METACITY_THEME="Ia Ora Steel" ;;
+  *download) METACITY_THEME="Ia Ora Night";;
  esac
 
   if [ "x$METACITY_THEME" != "x" ]; then
@@ -114,8 +114,8 @@ fi
 if [ ! -d %{_sysconfdir}/gconf/gconf.xml.local-defaults/apps/metacity/general -a "x$META_CLASS" != "x" ]; then
  case "$META_CLASS" in
   *server) METACITY_THEME="Ia Ora Gray" ;;
-  *desktop) METACITY_THEME="Ia Ora Arctic" ;;
-  *download) METACITY_THEME="Ia Ora Blue";;
+  *desktop) METACITY_THEME="Ia Ora Steel" ;;
+  *download) METACITY_THEME="Ia Ora Night";;
  esac
 
   if [ "x$METACITY_THEME" != "x" ]; then 
