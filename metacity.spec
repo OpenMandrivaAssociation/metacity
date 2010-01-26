@@ -5,8 +5,8 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.28.0
-Release: %mkrel 3
+Version: 2.28.1
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 #gw http://bugzilla.gnome.org/show_bug.cgi?id=562106
