@@ -5,8 +5,8 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.30.1
-Release: %mkrel 2
+Version: 2.30.2
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 #gw http://bugzilla.gnome.org/show_bug.cgi?id=562106
@@ -16,10 +16,6 @@ Patch2: metacity-2.25.2-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
 Patch5: metacity_low_resources.patch
-# (fc) 2.30.1-2mdv remove session warning at startup (GNOME bug #577576) (GIT)
-Patch6: metacity-2.30.1-fix-session-warning.patch
-# (fc) 2.30.1-2mdv fix timestamp for focus stealing (GNOME bug #573922) (GIT)
-Patch7: metacity-2.30.1-timestamp-focusstealing.patch
 # (fc) 2.30.1-2mdv ensure text is local encoded for Zenity (GNOME bug #617536)
 Patch8: metacity-2.30.1-local-encoding-for-zenity.patch
 License: GPLv2+
@@ -79,8 +75,6 @@ files to allow you to develop with Metacity.
 %ifarch %mips
 %patch5 -p1 -b .lowres
 %endif
-%patch6 -p1 -b .session-warning
-%patch7 -p1 -b .focus-stealing
 %patch8 -p1 -b .local-encoding
 
 #needed by patch 0
