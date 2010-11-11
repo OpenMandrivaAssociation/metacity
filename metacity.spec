@@ -34,7 +34,7 @@ BuildRequires: GConf2
 BuildRequires: zenity
 BuildRequires: intltool
 BuildRequires: gnome-doc-utils
-BuildRequires: libcanberra-devel
+BuildRequires: libcanberra-gtk-devel
 #gw libtool dep:
 BuildRequires: dbus-glib-devel
 
