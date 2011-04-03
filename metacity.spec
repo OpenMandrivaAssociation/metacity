@@ -6,7 +6,7 @@
 Summary: Metacity window manager
 Name: metacity
 Version: 2.30.3
-Release: %mkrel 3
+Release: %mkrel 4
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
 # Should set RestartStyleHint to RestartIfRunning when replaced
@@ -71,7 +71,7 @@ files to allow you to develop with Metacity.
 
 %prep
 %setup -q
-#%patch0 -p1
+#patch0 -p1
 %patch2 -p1 -b .defaulttheme
 # don't enable compositor by default, too many drivers are buggy currently
 #%patch4 -p1 -b .enable-compositor
