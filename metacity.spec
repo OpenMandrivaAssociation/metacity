@@ -5,17 +5,12 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.30.3
-Release: %mkrel 5
+Version: 2.34.0
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
-# Should set RestartStyleHint to RestartIfRunning when replaced
-# fix https://qa.mandriva.com/show_bug.cgi?id=60845
-# disabled as it creates this new bug:
-# https://qa.mandriva.com/show_bug.cgi?id=62936
-Patch0: Should-set-RestartStyleHint-to-RestartIfRunning-when.patch
-# (fc) 2.3.987-2mdk use Ia Ora as default theme
-Patch2: metacity-2.25.2-defaulttheme.patch
+# (fwang) 2.34.0 use QtCurve as default theme
+Patch2: metacity-2.34.0-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
 Patch5: metacity_low_resources.patch
@@ -25,24 +20,25 @@ License: GPLv2+
 Group: Graphical desktop/GNOME
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Requires: zenity
-BuildRequires: libglade2.0-devel
-BuildRequires: libGConf2-devel >= 1.1.9
-BuildRequires: startup-notification-devel >= %{startup_notification_version}
-BuildRequires: libcanberra-devel
-BuildRequires: libgtop2.0-devel
-BuildRequires: libxinerama-devel
+BuildRequires: libice-devel
+BuildRequires: libsm-devel
+BuildRequires: libx11-devel
 BuildRequires: libxcomposite-devel
+BuildRequires: libxcursor-devel
 BuildRequires: libxdamage-devel
-BuildRequires: libxtst-devel
-BuildRequires: libmesaglu-devel
-BuildRequires: GConf2
-BuildRequires: zenity
-BuildRequires: intltool
-BuildRequires: gnome-doc-utils
+BuildRequires: libxext-devel
+BuildRequires: libxfixes-devel
+BuildRequires: libxinerama-devel
+BuildRequires: libxrandr-devel
+BuildRequires: libxrender-devel
 BuildRequires: libcanberra-gtk-devel
-#gw libtool dep:
-BuildRequires: dbus-glib-devel
-
+BuildRequires: libGConf2-devel
+BuildRequires: GConf2
+BuildRequires: gtk+2-devel
+BuildRequires: libgtop2.0-devel
+BuildRequires: startup-notification-devel
+BuildRequires: intltool gnome-doc-utils
+BuildRequires: zenity
 
 %description
 Metacity is a simple window manager that integrates nicely with 
@@ -59,10 +55,10 @@ This package contains libraries used by Metacity.
 Summary:        Libraries and include files with Metacity
 Group:          Development/GNOME and GTK+
 Requires:       %name = %{version}
-Requires:		%{libname} = %{version}
-Provides:		%{name}-devel = %{version}-%{release}
-Provides:		lib%{name}-private-devel = %{version}-%{release}
-Obsoletes: %mklibname -d %{name}-private 0
+Requires:	%{libname} = %{version}
+Provides:	%{name}-devel = %{version}-%{release}
+Provides:	lib%{name}-private-devel = %{version}-%{release}
+Obsoletes:	%mklibname -d %{name}-private 0
 
 %description -n %{libnamedev}
 This package provides the necessary development libraries and include 
@@ -71,7 +67,6 @@ files to allow you to develop with Metacity.
 
 %prep
 %setup -q
-%patch0 -p1 -b .should
 %patch2 -p1 -b .defaulttheme
 # don't enable compositor by default, too many drivers are buggy currently
 #%patch4 -p1 -b .enable-compositor
@@ -81,13 +76,12 @@ files to allow you to develop with Metacity.
 %patch8 -p1 -b .local-encoding
 
 %build
-
-%configure2_5x 
+%configure2_5x --with-gtk=2.0 --disable-schemas-install --disable-scrollkeeper
 %make
 
 %install
 rm -rf $RPM_BUILD_ROOT %name.lang
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
+%makeinstall_std
 
 %find_lang %{name} 
 
@@ -97,46 +91,14 @@ rm -rf $RPM_BUILD_ROOT
 %define schemas metacity
 
 # update default window theme on distribution upgrade
-%triggerpostun -- metacity < 2.28.0-3mdv
-if [ "x$META_CLASS" != "x" ]; then
- case "$META_CLASS" in
-  *server) METACITY_THEME="Ia Ora Gray" ;;
-  *desktop) METACITY_THEME="Ia Ora Steel" ;;
-  *download) METACITY_THEME="Ia Ora Night";;
- esac
-
-  if [ "x$METACITY_THEME" != "x" ]; then
-  %{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/metacity/general/theme "$METACITY_THEME" > /dev/null
-  fi
-fi
+%triggerpostun -- metacity < 2.34.0
+%{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/metacity/general/theme "Clearlooks" > /dev/null
 
 %post
-%if %mdkversion < 200900
-%post_install_gconf_schemas %{schemas}
-%endif
-if [ ! -d %{_sysconfdir}/gconf/gconf.xml.local-defaults/apps/metacity/general -a "x$META_CLASS" != "x" ]; then
- case "$META_CLASS" in
-  *server) METACITY_THEME="Ia Ora Gray" ;;
-  *desktop) METACITY_THEME="Ia Ora Steel" ;;
-  *download) METACITY_THEME="Ia Ora Night";;
- esac
-
-  if [ "x$METACITY_THEME" != "x" ]; then 
-  %{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/metacity/general/theme "$METACITY_THEME" > /dev/null
-  fi
-fi
-
+%{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/metacity/general/theme "Clearlooks" > /dev/null
 
 %preun
 %preun_uninstall_gconf_schemas %{schemas}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %files -f %{name}.lang
 %defattr(-,root,root)
@@ -149,6 +111,7 @@ fi
 %{_datadir}/metacity
 %dir %_datadir/gnome/help/creating-metacity-themes
 %_datadir/gnome/help/creating-metacity-themes/C
+%lang(de) %_datadir/gnome/help/creating-metacity-themes/de
 %{_datadir}/themes/*
 %{_mandir}/man1/*
 
