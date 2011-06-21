@@ -5,10 +5,10 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.34.0
-Release: %mkrel 3
+Version: 2.34.1
+Release: %mkrel 1
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
-Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.bz2
+Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.xz
 Patch0: metacity-2.34.0-link.patch
 # (fwang) 2.34.0 use QtCurve as default theme
 Patch2: metacity-2.34.0-defaulttheme.patch
