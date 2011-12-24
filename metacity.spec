@@ -1,12 +1,13 @@
 %define lib_major 0
 %define libname %mklibname %{name}-private %{lib_major}
-%define libnamedev %mklibname -d %{name}-private
-%define startup_notification_version 0.4
+%define develname %mklibname -d %{name}-private
 
 Summary: Metacity window manager
 Name: metacity
 Version: 2.34.1
-Release: %mkrel 1
+Release: 2
+License: GPLv2+
+Group: Graphical desktop/GNOME
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.xz
 Patch0: metacity-2.34.0-link.patch
@@ -17,10 +18,7 @@ Patch4: metacity-enable-compositor.patch
 Patch5: metacity_low_resources.patch
 # (fc) 2.30.1-2mdv ensure text is local encoded for Zenity (GNOME bug #617536)
 Patch8: metacity-2.30.1-local-encoding-for-zenity.patch
-License: GPLv2+
-Group: Graphical desktop/GNOME
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
-Requires: zenity
+
 BuildRequires: libice-devel
 BuildRequires: libsm-devel
 BuildRequires: libx11-devel
@@ -42,27 +40,27 @@ BuildRequires: intltool gnome-doc-utils
 BuildRequires: zenity
 BuildRequires: gnome-common
 
+Requires: zenity
+
 %description
 Metacity is a simple window manager that integrates nicely with 
 GNOME 2.
 
 %package -n %{libname}
-Summary:        Libraries for Metacity
-Group:          System/Libraries
+Summary:	Libraries for Metacity
+Group:		System/Libraries
 
 %description -n %{libname}
 This package contains libraries used by Metacity.
 
-%package -n %{libnamedev}
-Summary:        Libraries and include files with Metacity
-Group:          Development/GNOME and GTK+
-Requires:       %name = %{version}
+%package -n %{develname}
+Summary:	Libraries and include files with Metacity
+Group:		Development/GNOME and GTK+
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	lib%{name}-private-devel = %{version}-%{release}
 Obsoletes:	%mklibname -d %{name}-private 0
 
-%description -n %{libnamedev}
+%description -n %{develname}
 This package provides the necessary development libraries and include 
 files to allow you to develop with Metacity.
 
@@ -80,7 +78,11 @@ files to allow you to develop with Metacity.
 
 %build
 NOCONFIGURE=yes gnome-autogen.sh
-%configure2_5x --with-gtk=2.0 --disable-schemas-install --disable-scrollkeeper
+%configure2_5x \
+	--disable-static \
+	--with-gtk=2.0 \
+	--disable-schemas-install \
+	--disable-scrollkeeper
 %make
 
 %install
@@ -88,9 +90,6 @@ rm -rf %{buildroot} %name.lang
 %makeinstall_std
 
 %find_lang %{name} 
-
-%clean
-rm -rf %{buildroot}
 
 %define schemas metacity
 
@@ -105,7 +104,6 @@ rm -rf %{buildroot}
 %preun_uninstall_gconf_schemas %{schemas}
 
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc README COPYING NEWS HACKING 
 %{_sysconfdir}/gconf/schemas/*
 %{_bindir}/*
@@ -120,14 +118,10 @@ rm -rf %{buildroot}
 %{_mandir}/man1/*
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/*.so.%{lib_major}*
 
-%files -n %{libnamedev}
-%defattr(-,root,root)
+%files -n %{develname}
 %doc ChangeLog
 %{_libdir}/*.so
-%{_libdir}/*.a
-%{_libdir}/*.la
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
