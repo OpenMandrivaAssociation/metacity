@@ -1,3 +1,5 @@
+%define _disable_ld_no_undefined 1
+
 %define lib_major 0
 %define libname %mklibname %{name}-private %{lib_major}
 %define develname %mklibname -d %{name}-private
@@ -39,6 +41,7 @@ BuildRequires: startup-notification-devel
 BuildRequires: intltool gnome-doc-utils
 BuildRequires: zenity
 BuildRequires: gnome-common
+BuildRequires: pkgconfig(pangoxft)
 
 Requires: zenity
 
@@ -78,11 +81,11 @@ files to allow you to develop with Metacity.
 
 %build
 NOCONFIGURE=yes gnome-autogen.sh
-%configure2_5x \
+%configure \
 	--disable-static \
-	--with-gtk=2.0 \
 	--disable-schemas-install \
 	--disable-scrollkeeper
+
 %make
 
 %install
@@ -125,3 +128,4 @@ rm -rf %{buildroot} %name.lang
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
+
