@@ -6,15 +6,13 @@
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.34.1
-Release: 2
+Version: 2.34.2
+Release: 1
 License: GPLv2+
 Group: Graphical desktop/GNOME
 URL: http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/metacity/%{name}-%{version}.tar.xz
 Patch0: metacity-2.34.0-link.patch
-# (fwang) 2.34.0 use QtCurve as default theme
-Patch2: metacity-2.34.0-defaulttheme.patch
 # (fc) 2.21.3-2mdv enable compositor by default
 Patch4: metacity-enable-compositor.patch
 Patch5: metacity_low_resources.patch
@@ -71,7 +69,6 @@ files to allow you to develop with Metacity.
 %prep
 %setup -q
 %patch0 -p1 -b .link
-%patch2 -p1 -b .defaulttheme
 # don't enable compositor by default, too many drivers are buggy currently
 #%patch4 -p1 -b .enable-compositor
 %ifarch %mips
@@ -83,7 +80,6 @@ files to allow you to develop with Metacity.
 NOCONFIGURE=yes gnome-autogen.sh
 %configure \
 	--disable-static \
-	--disable-schemas-install \
 	--disable-scrollkeeper
 
 %make
@@ -94,25 +90,14 @@ rm -rf %{buildroot} %name.lang
 
 %find_lang %{name} 
 
-%define schemas metacity
-
-# update default window theme on distribution upgrade
-%triggerpostun -- metacity < 2.34.0
-%{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/metacity/general/theme "Clearlooks" > /dev/null
-
-%post
-%{_bindir}/gconftool-2 --config-source=xml::/etc/gconf/gconf.xml.local-defaults/ --direct --type=string --set /apps/metacity/general/theme "Clearlooks" > /dev/null
-
-%preun
-%preun_uninstall_gconf_schemas %{schemas}
 
 %files -f %{name}.lang
 %doc README COPYING NEWS HACKING 
-%{_sysconfdir}/gconf/schemas/*
 %{_bindir}/*
 %{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
 %{_datadir}/applications/metacity.desktop
 %{_datadir}/gnome/wm-properties/metacity-wm.desktop
+%{_datadir}/glib-2.0/schemas/*
 %{_datadir}/metacity
 %dir %_datadir/gnome/help/creating-metacity-themes
 %_datadir/gnome/help/creating-metacity-themes/C
