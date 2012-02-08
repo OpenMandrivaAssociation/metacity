@@ -35,6 +35,7 @@ BuildRequires: libGConf2-devel
 BuildRequires: GConf2
 BuildRequires: gtk+2-devel
 BuildRequires: libgtop2.0-devel
+BuildRequires: gsettings-desktop-schemas-devel
 BuildRequires: startup-notification-devel
 BuildRequires: intltool gnome-doc-utils
 BuildRequires: zenity
