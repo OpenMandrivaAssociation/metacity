@@ -93,10 +93,11 @@ NOCONFIGURE=yes gnome-autogen.sh
 %files -f %{name}.lang
 %doc README COPYING NEWS HACKING 
 %{_bindir}/*
-%{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
 %{_datadir}/applications/metacity.desktop
-%{_datadir}/gnome/wm-properties/metacity-wm.desktop
+%{_datadir}/GConf/gsettings/metacity-schemas.convert
 %{_datadir}/glib-2.0/schemas/*
+%{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
+%{_datadir}/gnome/wm-properties/metacity-wm.desktop
 %{_datadir}/metacity
 %dir %_datadir/gnome/help/creating-metacity-themes
 %_datadir/gnome/help/creating-metacity-themes/C
