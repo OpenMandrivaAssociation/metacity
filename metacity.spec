@@ -1,12 +1,12 @@
 %define _disable_ld_no_undefined 1
 
-%define lib_major 0
-%define libname %mklibname %{name}-private %{lib_major}
+%define major 0
+%define libname %mklibname %{name}-private %{major}
 %define develname %mklibname -d %{name}-private
 
 Summary: Metacity window manager
 Name: metacity
-Version: 2.34.2
+Version: 2.34.3
 Release: 1
 License: GPLv2+
 Group: Graphical desktop/GNOME
@@ -19,34 +19,35 @@ Patch5: metacity_low_resources.patch
 # (fc) 2.30.1-2mdv ensure text is local encoded for Zenity (GNOME bug #617536)
 Patch8: metacity-2.30.1-local-encoding-for-zenity.patch
 
-BuildRequires: libice-devel
-BuildRequires: libsm-devel
-BuildRequires: libx11-devel
-BuildRequires: libxcomposite-devel
-BuildRequires: libxcursor-devel
-BuildRequires: libxdamage-devel
-BuildRequires: libxext-devel
-BuildRequires: libxfixes-devel
-BuildRequires: libxinerama-devel
-BuildRequires: libxrandr-devel
-BuildRequires: libxrender-devel
-BuildRequires: libcanberra-gtk-devel
-BuildRequires: libGConf2-devel
 BuildRequires: GConf2
-BuildRequires: gtk+2-devel
-BuildRequires: libgtop2.0-devel
-BuildRequires: gsettings-desktop-schemas-devel >= 3.3.0
-BuildRequires: startup-notification-devel
-BuildRequires: intltool gnome-doc-utils
-BuildRequires: zenity
 BuildRequires: gnome-common
+BuildRequires: gnome-doc-utils
+BuildRequires: intltool
+BuildRequires: zenity
+BuildRequires: pkgconfig(gconf-2.0)
+BuildRequires: pkgconfig(gsettings-desktop-schemas)
+BuildRequires: pkgconfig(gtk+-2.0)
+BuildRequires: pkgconfig(ice)
+BuildRequires: pkgconfig(libcanberra-gtk)
+BuildRequires: pkgconfig(libgtop-2.0)
+BuildRequires: pkgconfig(libstartup-notification-1.0)
 BuildRequires: pkgconfig(pangoxft)
+BuildRequires: pkgconfig(sm)
+BuildRequires: pkgconfig(x11)
+BuildRequires: pkgconfig(xcomposite)
+BuildRequires: pkgconfig(xcursor)
+BuildRequires: pkgconfig(xdamage)
+BuildRequires: pkgconfig(xext)
+BuildRequires: pkgconfig(xfixes)
+BuildRequires: pkgconfig(xinerama)
+BuildRequires: pkgconfig(xrandr)
+BuildRequires: pkgconfig(xrender)
 
 Requires: zenity
 
 %description
 Metacity is a simple window manager that integrates nicely with 
-GNOME 2.
+GNOME. 
 
 %package -n %{libname}
 Summary:	Libraries for Metacity
@@ -65,7 +66,6 @@ Obsoletes:	%mklibname -d %{name}-private 0
 %description -n %{develname}
 This package provides the necessary development libraries and include 
 files to allow you to develop with Metacity.
-
 
 %prep
 %setup -q
@@ -86,11 +86,9 @@ NOCONFIGURE=yes gnome-autogen.sh
 %make
 
 %install
-rm -rf %{buildroot} %name.lang
 %makeinstall_std
 
 %find_lang %{name} 
-
 
 %files -f %{name}.lang
 %doc README COPYING NEWS HACKING 
@@ -107,7 +105,7 @@ rm -rf %{buildroot} %name.lang
 %{_mandir}/man1/*
 
 %files -n %{libname}
-%{_libdir}/*.so.%{lib_major}*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
 %doc ChangeLog
