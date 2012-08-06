@@ -21,10 +21,10 @@ Patch8: metacity-2.30.1-local-encoding-for-zenity.patch
 
 BuildRequires: GConf2
 BuildRequires: gnome-common
-BuildRequires: gnome-doc-utils
 BuildRequires: intltool
 BuildRequires: zenity
 BuildRequires: pkgconfig(gconf-2.0)
+BuildRequires: pkgconfig(gnome-doc-utils)
 BuildRequires: pkgconfig(gsettings-desktop-schemas)
 BuildRequires: pkgconfig(gtk+-2.0)
 BuildRequires: pkgconfig(ice)
