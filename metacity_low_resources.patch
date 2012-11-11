@@ -1,0 +1,13 @@
+Index: metacity-2.18.0/src/metacity.schemas.in
+===================================================================
+--- metacity-2.18.0.orig/src/metacity.schemas.in
++++ metacity-2.18.0/src/metacity.schemas.in
+@@ -321,7 +321,7 @@
+       <applyto>/apps/metacity/general/reduced_resources</applyto>
+       <owner>metacity</owner>
+       <type>bool</type>
+-      <default>false</default>
++      <default>true</default>
+       <locale name="C">
+          <short>If true, trade off usability for less resource usage</short>
+          <long>

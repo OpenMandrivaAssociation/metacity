@@ -1,0 +1,21 @@
+--- metacity-2.34.0/configure.in.link	2011-05-08 11:17:14.000000000 +0200
++++ metacity-2.34.0/configure.in	2011-05-08 11:18:44.000000000 +0200
+@@ -201,6 +201,7 @@
+ PKG_CHECK_MODULES(ALL, glib-2.0 >= 2.6.0 gthread-2.0 >= 2.6.0)
+ # gtk_window_set_icon_name requires gtk2+-2.60
+ PKG_CHECK_MODULES(METACITY_MESSAGE, gtk+-$GTK_API_VERSION >= $GTK_MIN_VERSION)
++PKG_CHECK_MODULES(GTK, gtk+-$GTK_API_VERSION >= $GTK_MIN_VERSION)
+ PKG_CHECK_MODULES(METACITY_WINDOW_DEMO, gtk+-$GTK_API_VERSION >= $GTK_MIN_VERSION)
+ 
+ if $PKG_CONFIG --atleast-version 1.2.0 pangoxft; then
+--- metacity-2.34.0/src/Makefile.am.link	2011-05-08 11:19:15.000000000 +0200
++++ metacity-2.34.0/src/Makefile.am	2011-05-08 11:19:35.000000000 +0200
+@@ -120,7 +120,7 @@
+ 	ui/theme.h
+ 
+ libmetacity_private_la_LDFLAGS = -no-undefined
+-libmetacity_private_la_LIBADD  = @METACITY_LIBS@
++libmetacity_private_la_LIBADD  = @GTK_LIBS@
+ 
+ libmetacityincludedir = $(includedir)/metacity-1/metacity-private
+ 

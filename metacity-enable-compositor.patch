@@ -1,0 +1,12 @@
+diff -p -up metacity-2.21.3/src/metacity.schemas.in.enable-compositor metacity-2.21.3/src/metacity.schemas.in
+--- metacity-2.21.3/src/metacity.schemas.in.enable-compositor	2007-12-19 11:25:31.000000000 +0100
++++ metacity-2.21.3/src/metacity.schemas.in	2007-12-19 11:25:40.000000000 +0100
+@@ -311,7 +311,7 @@
+       <applyto>/apps/metacity/general/compositing_manager</applyto>
+       <owner>metacity</owner>
+       <type>bool</type>
+-      <default>false</default>
++      <default>true</default>
+       <locale name="C">
+         <short>Compositing Manager</short>
+         <long>
