@@ -11,7 +11,7 @@ Version:	2.34.13
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
-URL:		http://ftp.gnome.org/pub/gnome/sources/metacity/
+Url:		http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/metacity/%{url_ver}/%{name}-%{version}.tar.xz
 Patch0:		metacity-2.34.0-link.patch
 # (fc) 2.21.3-2mdv enable compositor by default
@@ -64,7 +64,7 @@ This package contains libraries used by Metacity.
 %package -n %{devname}
 Summary:	Libraries and include files with Metacity
 Group:		Development/GNOME and GTK+
-Requires:	%{libname} = %{version}
+Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{devname}
