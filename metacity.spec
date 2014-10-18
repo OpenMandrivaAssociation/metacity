@@ -1,39 +1,30 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 %define _disable_ld_no_undefined 1
 
-%define major	0
+%define major	2
 %define libname %mklibname %{name}-private %{major}
 %define devname %mklibname -d %{name}-private
 
 Summary:	Metacity window manager
 Name:		metacity
-Version:	2.34.13
-Release:	11
+Version:	3.14.1
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/metacity/%{url_ver}/%{name}-%{version}.tar.xz
-Patch0:		metacity-2.34.0-link.patch
-# (fc) 2.21.3-2mdv enable compositor by default
-Patch4:		metacity-enable-compositor.patch
-Patch5:		metacity_low_resources.patch
-# (fc) 2.30.1-2mdv ensure text is local encoded for Zenity (GNOME bug #617536)
-Patch8:		metacity-2.30.1-local-encoding-for-zenity.patch
 
-BuildRequires:	GConf2
 BuildRequires:	gnome-common
 BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	yelp-tools
 BuildRequires:	zenity
-BuildRequires:	pkgconfig(gconf-2.0)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(gnome-doc-utils)
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
-BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(ice)
-BuildRequires:	pkgconfig(libcanberra-gtk)
-BuildRequires:	pkgconfig(libglade-2.0)
+BuildRequires:	pkgconfig(libcanberra-gtk3)
 BuildRequires:	pkgconfig(libgtop-2.0)
 BuildRequires:	pkgconfig(libstartup-notification-1.0)
 BuildRequires:	pkgconfig(pangoxft)
@@ -73,18 +64,9 @@ files to allow you to develop with Metacity.
 
 %prep
 %setup -q
-%patch0 -p1 -b .link
-# don't enable compositor by default, too many drivers are buggy currently
-#%patch4 -p1 -b .enable-compositor
-%ifarch %mips
-%patch5 -p1 -b .lowres
-%endif
-%patch8 -p1 -b .local-encoding
 
 %build
-NOCONFIGURE=yes gnome-autogen.sh
-%configure \
-	--disable-static
+%configure
 
 %make
 
