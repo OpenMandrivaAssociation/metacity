@@ -1,14 +1,14 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 %define _disable_ld_no_undefined 1
 
-%define major	2
+%define major	3
 %define libname %mklibname %{name}-private %{major}
 %define devname %mklibname -d %{name}-private
 
 Summary:	Metacity window manager
 Name:		metacity
-Version:	3.14.1
-Release:	2
+Version:	3.16.1
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://ftp.gnome.org/pub/gnome/sources/metacity/

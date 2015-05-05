@@ -1,4 +1,5 @@
 removed_sources:
   metacity-2.34.8.tar.xz: 9c206e61258e8a3621a766fe2169b4dbf917baf1
-sources:
   metacity-3.14.1.tar.xz: 0619883d88a4a869e1aa5d59ee8607126f7af097
+sources:
+  metacity-3.16.1.tar.xz: d16655664bec9bc8535fc8782b7cd83bd9cd7717
