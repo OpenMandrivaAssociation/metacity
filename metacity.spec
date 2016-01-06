@@ -7,7 +7,7 @@
 
 Summary:	Metacity window manager
 Name:		metacity
-Version:	3.16.1
+Version:	3.18.1
 Release:	2
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -42,8 +42,8 @@ BuildRequires:	pkgconfig(xrender)
 Requires:	zenity
 
 %description
-Metacity is a simple window manager that integrates nicely with 
-GNOME. 
+Metacity is a simple window manager that integrates nicely with
+GNOME.
 
 %package -n %{libname}
 Summary:	Libraries for Metacity
@@ -59,7 +59,7 @@ Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{devname}
-This package provides the necessary development libraries and include 
+This package provides the necessary development libraries and include
 files to allow you to develop with Metacity.
 
 %prep
@@ -76,7 +76,7 @@ files to allow you to develop with Metacity.
 %find_lang %{name} --with-gnome --all-name
 
 %files -f %{name}.lang
-%doc README COPYING NEWS HACKING 
+%doc README COPYING NEWS HACKING
 %{_bindir}/*
 %{_datadir}/applications/metacity.desktop
 %{_datadir}/GConf/gsettings/metacity-schemas.convert
