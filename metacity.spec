@@ -1,7 +1,7 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 %define _disable_ld_no_undefined 1
 
-%define major	3
+%define major	1
 %define libname %mklibname %{name}-private %{major}
 %define devname %mklibname -d %{name}-private
 
