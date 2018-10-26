@@ -1,14 +1,14 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 %define _disable_ld_no_undefined 1
 
-%define major	3
+%define major	1
 %define libname %mklibname %{name}-private %{major}
 %define devname %mklibname -d %{name}-private
 
 Summary:	Metacity window manager
 Name:		metacity
-Version:	3.18.1
-Release:	2
+Version:	3.30.1
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://ftp.gnome.org/pub/gnome/sources/metacity/
@@ -79,12 +79,12 @@ files to allow you to develop with Metacity.
 %doc README COPYING NEWS HACKING
 %{_bindir}/*
 %{_datadir}/applications/metacity.desktop
-%{_datadir}/GConf/gsettings/metacity-schemas.convert
+#{_datadir}/GConf/gsettings/metacity-schemas.convert
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
-%{_datadir}/gnome/wm-properties/metacity-wm.desktop
+#{_datadir}/gnome/wm-properties/metacity-wm.desktop
 %{_datadir}/metacity
-%{_datadir}/themes/*
+#{_datadir}/themes/*
 %{_mandir}/man1/*
 
 %files -n %{libname}
