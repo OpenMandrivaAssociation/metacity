@@ -23,6 +23,8 @@ BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(gnome-doc-utils)
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gthread-2.0)
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(libcanberra-gtk3)
 BuildRequires:	pkgconfig(libgtop-2.0)
@@ -66,12 +68,13 @@ files to allow you to develop with Metacity.
 %setup -q
 
 %build
-%configure
+%configure2_5x --disable-static \
+               --disable-schemas-compile
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %find_lang %{name} --with-gnome --all-name
 
