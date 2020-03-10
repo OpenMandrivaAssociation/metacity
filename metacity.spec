@@ -7,7 +7,7 @@
 
 Summary:	Metacity window manager
 Name:		metacity
-Version:	3.34.1
+Version:	3.36.0
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -68,7 +68,7 @@ files to allow you to develop with Metacity.
 %setup -q
 
 %build
-%configure2_5x --disable-static \
+%configure --disable-static \
                --disable-schemas-compile
 
 %make_build
