@@ -40,6 +40,7 @@ BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xinerama)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(xrender)
+BuildRequires:  pkgconfig(xres)
 
 Requires:	zenity
 
