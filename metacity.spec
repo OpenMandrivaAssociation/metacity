@@ -87,7 +87,7 @@ files to allow you to develop with Metacity.
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
 #{_datadir}/gnome/wm-properties/metacity-wm.desktop
-%{_datadir}/metacity
+#{_datadir}/metacity
 #{_datadir}/themes/*
 %{_mandir}/man1/*
 
