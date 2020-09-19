@@ -1,13 +1,13 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 %define _disable_ld_no_undefined 1
 
-%define major	1
+%define major	3
 %define libname %mklibname %{name}-private %{major}
 %define devname %mklibname -d %{name}-private
 
 Summary:	Metacity window manager
 Name:		metacity
-Version:	3.36.1
+Version:	3.37.1
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -40,6 +40,7 @@ BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xinerama)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(xrender)
+BuildRequires:  pkgconfig(xres)
 
 Requires:	zenity
 
@@ -86,7 +87,7 @@ files to allow you to develop with Metacity.
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
 #{_datadir}/gnome/wm-properties/metacity-wm.desktop
-%{_datadir}/metacity
+#{_datadir}/metacity
 #{_datadir}/themes/*
 %{_mandir}/man1/*
 
