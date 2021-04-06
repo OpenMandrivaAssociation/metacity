@@ -43,7 +43,7 @@ BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(xrender)
 BuildRequires:  pkgconfig(xres)
 
-Requires:	zenity
+Requires:	zenity-gtk
 
 %description
 Metacity is a simple window manager that integrates nicely with
