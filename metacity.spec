@@ -7,7 +7,7 @@
 
 Summary:	Metacity window manager
 Name:		metacity
-Version:	3.38.0
+Version:	3.40.0
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -43,7 +43,7 @@ BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(xrender)
 BuildRequires:  pkgconfig(xres)
 
-Requires:	zenity
+Requires:	zenity-gtk
 
 %description
 Metacity is a simple window manager that integrates nicely with
