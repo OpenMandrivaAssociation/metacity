@@ -42,6 +42,8 @@ BuildRequires:  pkgconfig(xpresent)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(xrender)
 BuildRequires:  pkgconfig(xres)
+BuildRequires:  pkgconfig(vulkan)
+BuildRequires:  vulkan-headers
 
 Requires:	zenity-gtk
 
@@ -71,7 +73,8 @@ files to allow you to develop with Metacity.
 
 %build
 %configure --disable-static \
-               --disable-schemas-compile
+           --disable-schemas-compile \
+           --enable-vulkan
 
 %make_build
 
