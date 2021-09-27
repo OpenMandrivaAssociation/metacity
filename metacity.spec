@@ -8,7 +8,7 @@
 Summary:	Metacity window manager
 Name:		metacity
 Version:	3.40.0
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://ftp.gnome.org/pub/gnome/sources/metacity/
@@ -23,8 +23,8 @@ BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(gnome-doc-utils)
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	pkgconfig(gtk+-3.0)
-BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(gthread-2.0)
+BuildRequires:        pkgconfig(glib-2.0)
+BuildRequires:        pkgconfig(gthread-2.0)
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(libcanberra-gtk3)
 BuildRequires:	pkgconfig(libgtop-2.0)
@@ -38,12 +38,12 @@ BuildRequires:	pkgconfig(xdamage)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xinerama)
-BuildRequires:  pkgconfig(xpresent)
+BuildRequires:        pkgconfig(xpresent)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(xrender)
-BuildRequires:  pkgconfig(xres)
-BuildRequires:  pkgconfig(vulkan)
-BuildRequires:  vulkan-headers
+BuildRequires:        pkgconfig(xres)
+BuildRequires:        pkgconfig(vulkan)
+BuildRequires:        vulkan-headers
 
 Requires:	zenity-gtk
 
