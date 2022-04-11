@@ -7,22 +7,22 @@
 
 Summary:	Metacity window manager
 Name:		metacity
-Version:	3.42.0
-Release:	1
-License:	GPLv2+
+Version:              3.44.0
+Release:              1
+License:              GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/metacity/%{url_ver}/%{name}-%{version}.tar.xz
 
-BuildRequires:	gnome-common
-BuildRequires:	intltool
-BuildRequires:	itstool
-BuildRequires:	yelp-tools
-BuildRequires:	zenity
-BuildRequires:	pkgconfig(glu)
-BuildRequires:	pkgconfig(gnome-doc-utils)
-BuildRequires:	pkgconfig(gsettings-desktop-schemas)
-BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:        gnome-common
+BuildRequires:        intltool
+BuildRequires:        itstool
+BuildRequires:        yelp-tools
+BuildRequires:        zenity
+BuildRequires:        pkgconfig(glu)
+BuildRequires:        pkgconfig(gnome-doc-utils)
+BuildRequires:        pkgconfig(gsettings-desktop-schemas)
+BuildRequires:        pkgconfig(gtk+-3.0)
 BuildRequires:        pkgconfig(glib-2.0)
 BuildRequires:        pkgconfig(gthread-2.0)
 BuildRequires:	pkgconfig(ice)
