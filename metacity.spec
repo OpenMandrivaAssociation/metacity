@@ -8,10 +8,10 @@
 Summary:	Metacity window manager
 Name:		metacity
 Version:              3.49.1
-Release:              1
+Release:              2
 License:              GPLv2+
 Group:		Graphical desktop/GNOME
-Url:		http://ftp.gnome.org/pub/gnome/sources/metacity/
+Url:		https://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0:	https://ftp.gnome.org/pub/GNOME/sources/metacity/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:        gnome-common
