@@ -18,7 +18,7 @@ BuildRequires:        gnome-common
 BuildRequires:        intltool
 BuildRequires:        itstool
 BuildRequires:        yelp-tools
-BuildRequires:        zenity
+BuildRequires:        zenity-gtk
 BuildRequires:        pkgconfig(glu)
 BuildRequires:        pkgconfig(gnome-doc-utils)
 BuildRequires:        pkgconfig(gsettings-desktop-schemas)
