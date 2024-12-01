@@ -44,6 +44,7 @@ BuildRequires:	pkgconfig(xrender)
 BuildRequires:        pkgconfig(xres)
 BuildRequires:        pkgconfig(vulkan)
 BuildRequires:        vulkan-headers
+BuildRequires:        zenity-wrapper
 
 Requires:	zenity-gtk
 
