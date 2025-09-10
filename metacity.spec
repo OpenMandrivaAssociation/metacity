@@ -71,7 +71,7 @@ This package provides the necessary development libraries and include
 files to allow you to develop with Metacity.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 %configure --disable-static \
@@ -91,7 +91,7 @@ files to allow you to develop with Metacity.
 %{_datadir}/applications/metacity.desktop
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
-#{_userunitdir}/metacity.service
+%{_userunitdir}/metacity.service
 %{_libexecdir}/metacity-dialog
 %{_mandir}/man1/*
 
