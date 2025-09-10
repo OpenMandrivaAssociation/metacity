@@ -13,6 +13,7 @@ License:              GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		https://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0:	https://ftp.gnome.org/pub/GNOME/sources/metacity/%{url_ver}/%{name}-%{version}.tar.xz
+Patch0:      metacity-systemd-userunitdir.patch
 
 BuildRequires:        gnome-common
 BuildRequires:        intltool
@@ -88,12 +89,10 @@ files to allow you to develop with Metacity.
 %doc README COPYING NEWS HACKING
 %{_bindir}/*
 %{_datadir}/applications/metacity.desktop
-#{_datadir}/GConf/gsettings/metacity-schemas.convert
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/gnome-control-center/keybindings/50-metacity*.xml
-#{_datadir}/gnome/wm-properties/metacity-wm.desktop
-#{_datadir}/metacity
-#{_datadir}/themes/*
+%{_userunitdir}/metacity.service
+%{_libexecdir}/metacity-dialog
 %{_mandir}/man1/*
 
 %files -n %{libname}
