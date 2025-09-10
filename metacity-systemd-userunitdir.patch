@@ -1,0 +1,13 @@
+diff --git a/data/systemd/Makefile.am b/data/systemd/Makefile.am
+index 6d3f649..883eddb 100644
+--- a/data/systemd/Makefile.am
++++ b/data/systemd/Makefile.am
+@@ -3,7 +3,7 @@ NULL =
+ service_in_files = metacity.service.in
+ service_files = $(service_in_files:.service.in=.service)
+ 
+-systemduserdir = $(libdir)/systemd/user
++systemduserdir = $(prefix)/lib/systemd/user
+ systemduser_DATA = $(service_files)
+ 
+ %.service: %.service.in
