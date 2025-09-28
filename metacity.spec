@@ -13,7 +13,7 @@ License:              GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		https://ftp.gnome.org/pub/gnome/sources/metacity/
 Source0:	https://ftp.gnome.org/pub/GNOME/sources/metacity/%{url_ver}/%{name}-%{version}.tar.xz
-Patch0:      metacity-systemd-userunitdir.patch
+#Patch0:      metacity-systemd-userunitdir.patch
 
 BuildRequires:        gnome-common
 BuildRequires:        intltool
